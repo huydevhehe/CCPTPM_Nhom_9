@@ -4,6 +4,7 @@ class CustomerManager {
         this.customers = [];
         this.currentEditingId = null;
         this.filteredCustomers = [];
+        this.sortOrder = 'default';
         this.init();
     }
 
@@ -43,6 +44,12 @@ class CustomerManager {
             if (e.key === 'Enter') {
                 this.searchCustomers();
             }
+        });
+
+        // Sort functionality
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            this.sortOrder = e.target.value;
+            this.displayCustomers(this.filteredCustomers.length > 0);
         });
     }
 
@@ -166,29 +173,55 @@ class CustomerManager {
 
     displayCustomers(isFiltered = false) {
         const tbody = document.getElementById('customersTableBody');
-        const customersToDisplay = isFiltered ? this.filteredCustomers : this.customers;
+        let customersToDisplay = isFiltered ? this.filteredCustomers : this.customers;
+
+        // Apply sorting
+        customersToDisplay = this.sortCustomers([...customersToDisplay]);
+
+        // Update total count
+        document.getElementById('totalCount').textContent = this.customers.length;
 
         if (customersToDisplay.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center">No customers found</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" class="text-center">No customers found</td></tr>';
             return;
         }
 
-        tbody.innerHTML = customersToDisplay.map(customer => `
+        tbody.innerHTML = customersToDisplay.map((customer, index) => `
             <tr>
-                <td>${customer.id}</td>
-                <td>${this.escapeHtml(customer.name)}</td>
+                <td class="row-number">${index + 1}</td>
+                <td><span class="customer-id">${customer.id}</span></td>
+                <td><strong>${this.escapeHtml(customer.name)}</strong></td>
                 <td>${this.escapeHtml(customer.email)}</td>
                 <td>${this.escapeHtml(customer.phone)}</td>
                 <td>${this.escapeHtml(customer.address)}</td>
                 <td>${this.escapeHtml(customer.city)}</td>
                 <td>
                     <div class="action-buttons">
-                        <button class="btn btn-edit" onclick="customerManager.editCustomer('${customer.id}')">Edit</button>
-                        <button class="btn btn-delete" onclick="customerManager.deleteCustomer('${customer.id}')">Delete</button>
+                        <button class="btn btn-edit" onclick="customerManager.editCustomer('${customer.id}')" title="Edit customer">Edit</button>
+                        <button class="btn btn-delete" onclick="customerManager.deleteCustomer('${customer.id}')" title="Delete customer">Delete</button>
                     </div>
                 </td>
             </tr>
         `).join('');
+    }
+
+    sortCustomers(customers) {
+        if (this.sortOrder === 'default') {
+            return customers;
+        }
+
+        switch(this.sortOrder) {
+            case 'name-asc':
+                return customers.sort((a, b) => a.name.localeCompare(b.name));
+            case 'name-desc':
+                return customers.sort((a, b) => b.name.localeCompare(a.name));
+            case 'email-asc':
+                return customers.sort((a, b) => a.email.localeCompare(b.email));
+            case 'city-asc':
+                return customers.sort((a, b) => a.city.localeCompare(b.city));
+            default:
+                return customers;
+        }
     }
 
     saveCustomersToStorage() {

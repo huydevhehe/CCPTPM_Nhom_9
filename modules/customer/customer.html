@@ -61,10 +61,23 @@
         
         <!-- Customers Table -->
         <div class="table-section">
-            <h2>Customers List</h2>
+            <div class="table-header">
+                <h2>Customers List</h2>
+                <div class="table-stats">
+                    <span class="customer-count">Total: <strong id="totalCount">0</strong> customers</span>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="default">Sort by: Default</option>
+                        <option value="name-asc">Sort by: Name (A-Z)</option>
+                        <option value="name-desc">Sort by: Name (Z-A)</option>
+                        <option value="email-asc">Sort by: Email (A-Z)</option>
+                        <option value="city-asc">Sort by: City</option>
+                    </select>
+                </div>
+            </div>
             <table id="customersTable" class="customers-table">
                 <thead>
                     <tr>
+                        <th>No.</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -76,7 +89,7 @@
                 </thead>
                 <tbody id="customersTableBody">
                     <tr>
-                        <td colspan="7" class="text-center">No customers found</td>
+                        <td colspan="8" class="text-center">No customers found</td>
                     </tr>
                 </tbody>
             </table>
