@@ -1,16 +1,174 @@
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f6f8;color:#222;padding:24px}
-.container{max-width:640px;margin:24px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(2,6,23,0.08)}
-h1{font-size:20px;margin-bottom:12px}
-form{display:flex;gap:8px;margin-bottom:12px}
-input#nameInput{flex:1;padding:8px 10px;border:1px solid #d0d7de;border-radius:6px}
-button{padding:8px 12px;border:none;background:#2563eb;color:#fff;border-radius:6px;cursor:pointer}
-ul#list{list-style:none;margin-top:8px}
-ul#list li{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid #eef2f7;border-radius:6px;margin-bottom:8px}
-.item-label{flex:1;margin-right:12px}
-.btns{display:flex;gap:6px}
-.btn{padding:6px 8px;border-radius:6px;border:1px solid #d0d7de;background:#fff;cursor:pointer}
-.btn.edit{background:#fff}
-.btn.delete{background:#fee2e2;border-color:#fca5a5}
-.hint{margin-top:12px;font-size:12px;color:#6b7280}
-@media(max-width:480px){.container{padding:12px}}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial
+}
+
+:root {
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-2: #06b6d4;
+    --danger: #ef4444;
+}
+
+body {
+    background: linear-gradient(180deg, var(--bg), #f1f5f9);
+    color: #0f172a;
+    padding: 32px
+}
+
+.container {
+    max-width: 760px;
+    margin: 20px auto;
+    background: var(--card);
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.04)
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px
+}
+
+.title-wrap {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.logo {
+    flex: 0 0 40px;
+    border-radius: 8px
+}
+
+h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #0b1220
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0 16px
+}
+
+input#nameInput {
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #fff, #fbfdff);
+    box-shadow: 0 6px 14px rgba(16, 24, 40, 0.04);
+    font-size: 14px
+}
+
+button.primary {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+    transition: transform .08s ease, box-shadow .12s ease
+}
+
+button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14)
+}
+
+.items {
+    list-style: none;
+    margin-top: 4px
+}
+
+.items li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    box-shadow: 0 6px 12px rgba(2, 6, 23, 0.03);
+    margin-bottom: 10px
+}
+
+.item-label {
+    flex: 1;
+    margin-right: 14px;
+    font-size: 15px;
+    color: #071130
+}
+
+.btns {
+    display: flex;
+    gap: 8px
+}
+
+.btn {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px
+}
+
+.btn.edit {
+    color: var(--accent);
+    border-color: rgba(37, 99, 235, 0.12)
+}
+
+.btn.delete {
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.12);
+    background: linear-gradient(180deg, #fff, #fff)
+}
+
+.btn:hover {
+    transform: translateY(-1px)
+}
+
+.hint {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted)
+}
+
+.empty {
+    color: var(--muted);
+    padding: 14px;
+    text-align: center;
+    background: transparent;
+    border: none
+}
+
+@media(max-width:520px) {
+    .container {
+        padding: 14px
+    }
+
+    .item-label {
+        font-size: 14px
+    }
+
+    button.primary {
+        padding: 10px 12px
+    }
+}
