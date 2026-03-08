@@ -10,46 +10,51 @@
     <div class="container">
         <h1>Customer Management</h1>
         
-        <!-- Add/Edit Customer Form -->
-        <div class="form-section">
-            <h2>Customer Form</h2>
-            <form id="customerForm">
-                <div class="form-group">
-                    <label for="customerId">Customer ID:</label>
-                    <input type="text" id="customerId" placeholder="Auto-generated" disabled>
+        <!-- Modal for Create/Edit Customer -->
+        <div id="customerModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Add New Customer</h2>
+                    <span class="close-btn" onclick="customerManager.closeModal()">&times;</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="customerName">Name:</label>
-                    <input type="text" id="customerName" placeholder="Enter customer name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerEmail">Email:</label>
-                    <input type="email" id="customerEmail" placeholder="Enter email address" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerPhone">Phone:</label>
-                    <input type="tel" id="customerPhone" placeholder="Enter phone number" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerAddress">Address:</label>
-                    <textarea id="customerAddress" placeholder="Enter address" rows="3"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerCity">City:</label>
-                    <input type="text" id="customerCity" placeholder="Enter city">
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" id="submitBtn" class="btn btn-primary">Add Customer</button>
-                    <button type="reset" class="btn btn-secondary">Clear</button>
-                    <button type="button" id="cancelEditBtn" class="btn btn-danger" style="display: none;">Cancel Edit</button>
-                </div>
-            </form>
+                <form id="customerForm" class="customer-form">
+                    <div class="form-group">
+                        <label for="customerId">Customer ID:</label>
+                        <input type="text" id="customerId" placeholder="Auto-generated" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerName">Name: <span class="required">*</span></label>
+                        <input type="text" id="customerName" placeholder="Enter customer name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerEmail">Email: <span class="required">*</span></label>
+                        <input type="email" id="customerEmail" placeholder="Enter email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerPhone">Phone: <span class="required">*</span></label>
+                        <input type="tel" id="customerPhone" placeholder="Enter phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerAddress">Address:</label>
+                        <textarea id="customerAddress" placeholder="Enter address" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerCity">City:</label>
+                        <input type="text" id="customerCity" placeholder="Enter city">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Add Customer</button>
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                        <button type="button" class="btn btn-cancel" onclick="customerManager.closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
         
         <!-- Search and Filter -->
@@ -57,6 +62,7 @@
             <input type="text" id="searchInput" placeholder="Search by name or email..." class="search-box">
             <button id="searchBtn" class="btn btn-info">Search</button>
             <button id="clearSearchBtn" class="btn btn-secondary">Clear Search</button>
+            <button id="addCustomerBtn" class="btn btn-add-customer">+ Add New Customer</button>
         </div>
         
         <!-- Customers Table -->

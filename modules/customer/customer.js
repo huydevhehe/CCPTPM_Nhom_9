@@ -26,9 +26,16 @@ class CustomerManager {
             this.resetForm();
         });
 
-        // Cancel edit button
-        document.getElementById('cancelEditBtn').addEventListener('click', () => {
-            this.cancelEdit();
+        // Add New Customer button
+        document.getElementById('addCustomerBtn').addEventListener('click', () => {
+            this.openModal();
+        });
+
+        // Modal close button and outside click
+        document.getElementById('customerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'customerModal') {
+                this.closeModal();
+            }
         });
 
         // Search functionality
@@ -120,10 +127,10 @@ class CustomerManager {
 
             this.currentEditingId = id;
             document.getElementById('submitBtn').textContent = 'Update Customer';
-            document.getElementById('cancelEditBtn').style.display = 'inline-block';
+            document.getElementById('modalTitle').textContent = 'Edit Customer';
 
-            // Scroll to form
-            document.getElementById('customerForm').scrollIntoView({ behavior: 'smooth' });
+            // Open modal
+            this.openModal();
         }
     }
 
@@ -140,13 +147,26 @@ class CustomerManager {
         this.currentEditingId = null;
         this.resetForm();
         document.getElementById('submitBtn').textContent = 'Add Customer';
-        document.getElementById('cancelEditBtn').style.display = 'none';
+        document.getElementById('modalTitle').textContent = 'Add New Customer';
     }
 
     resetForm() {
         document.getElementById('customerForm').reset();
         document.getElementById('customerId').value = '';
         this.currentEditingId = null;
+    }
+
+    openModal() {
+        this.resetForm();
+        document.getElementById('customerModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        document.getElementById('customerName').focus();
+    }
+
+    closeModal() {
+        document.getElementById('customerModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        this.cancelEdit();
     }
 
     searchCustomers() {
