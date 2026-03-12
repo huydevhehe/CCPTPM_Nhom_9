@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Management</h1>
+        
+        <!-- Add/Edit Customer Form -->
+        <div class="form-section">
+            <h2>Customer Form</h2>
+            <form id="customerForm">
+                <div class="form-group">
+                    <label for="customerId">Customer ID:</label>
+                    <input type="text" id="customerId" placeholder="Auto-generated" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerName">Name:</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerEmail">Email:</label>
+                    <input type="email" id="customerEmail" placeholder="Enter email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">Phone:</label>
+                    <input type="tel" id="customerPhone" placeholder="Enter phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerAddress">Address:</label>
+                    <textarea id="customerAddress" placeholder="Enter address" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerCity">City:</label>
+                    <input type="text" id="customerCity" placeholder="Enter city">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Add Customer</button>
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                    <button type="button" id="cancelEditBtn" class="btn btn-danger" style="display: none;">Cancel Edit</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Search and Filter -->
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Search by name or email..." class="search-box">
+            <button id="searchBtn" class="btn btn-info">Search</button>
+            <button id="clearSearchBtn" class="btn btn-secondary">Clear Search</button>
+        </div>
+        
+        <!-- Customers Table -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>Customers List</h2>
+                <div class="table-stats">
+                    <span class="customer-count">Total: <strong id="totalCount">0</strong> customers</span>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="default">Sort by: Default</option>
+                        <option value="name-asc">Sort by: Name (A-Z)</option>
+                        <option value="name-desc">Sort by: Name (Z-A)</option>
+                        <option value="email-asc">Sort by: Email (A-Z)</option>
+                        <option value="city-asc">Sort by: City</option>
+                    </select>
+                </div>
+            </div>
+            <table id="customersTable" class="customers-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customersTableBody">
+                    <tr>
+                        <td colspan="8" class="text-center">No customers found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="customer.js"></script>
+</body>
+</html>
